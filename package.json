@@ -1,6 +1,6 @@
 {
   "name": "node-unpath",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "node path api for unix and window",
   "type": "module",
   "main": "./dist/index.js",
