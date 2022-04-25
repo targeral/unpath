@@ -19,6 +19,13 @@ export const getWin32OrPosixAPIByPath = (pathString: string) => {
     return path.posix;
 };
 
+/***
+ * # Explain
+ * 
+ * On windows systems, the correct results are returned for both windows paths and posix paths; 
+ * however, on posix systems, incorrect results are returned for windows paths.
+ **/
+
 export const basename = new Proxy(path.basename, {
     apply(_, __, argsList: [string, string | undefined]) {
         const p = argsList[0];
