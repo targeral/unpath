@@ -1,6 +1,6 @@
 {
   "name": "node-unpath",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "node path api for unix and window",
   "type": "module",
   "main": "./dist/index.js",
@@ -29,7 +29,7 @@
   "dependencies": {
     "slash": "^4.0.0"
   },
-  "file": [
+  "files": [
     "dist",
     "./package.json",
     "README.md"
