@@ -44,6 +44,7 @@ export const unpath =  {
 
 export type unPathT = typeof unpath;
 export type UnPathProps = keyof unPathT;
-
-export type AddUnPrefix<Prop extends UnPathProps> = Record<`un${Prop}`, unPathT[Prop]>;
-export type ExtentProps = AddUnPrefix<UnPathProps>;
+export type AddPrefixForProp<O, Prefix> = {
+    [Property in keyof O as `${string & Prefix}${string & Property}`]: O[Property]
+};
+export type PathExtentProps = AddPrefixForProp<unPathT, 'un'>;

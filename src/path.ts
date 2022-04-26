@@ -1,9 +1,9 @@
 import * as _path from 'path';
 import { unpath } from './unpath';
-import type { ExtentProps } from './unpath';
+import type { PathExtentProps } from './unpath';
 import { unpathPrefixREG, isUnPathProp } from './constant';
 
-export const path = new Proxy(_path as _path.PlatformPath & ExtentProps, {
+export const path = new Proxy(_path as _path.PlatformPath & PathExtentProps, {
     get(target, prop, rec) {
         if (prop in target) {
             return Reflect.get(target, prop, rec);
