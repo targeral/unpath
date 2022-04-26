@@ -38,8 +38,18 @@ export const basename: BaseNameT = (p, ext) => {
     return platformPath.basename(p, ext);
 };
 
+type DirNameT = typeof path.dirname;
+export const dirname: DirNameT = (p: string) => {
+    const platformPath = getWin32OrPosixAPIByPath(p);
+    return platformPath.basename(p);
+}
+
+export const delimiter = path.delimiter;
+
 export const unpath =  {
     basename,
+    dirname,
+    delimiter,
 };
 
 export type unPathT = typeof unpath;
