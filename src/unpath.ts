@@ -38,6 +38,12 @@ export const basename: BaseNameT = (p, ext) => {
     return platformPath.basename(p, ext);
 };
 
-export default {
+export const unpath =  {
     basename,
 };
+
+export type unPathT = typeof unpath;
+export type UnPathProps = keyof unPathT;
+
+export type AddUnPrefix<Prop extends UnPathProps> = Record<`un${Prop}`, unPathT[Prop]>;
+export type ExtentProps = AddUnPrefix<UnPathProps>;

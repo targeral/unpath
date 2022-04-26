@@ -1,7 +1,7 @@
-import unpath from './unpath';
+import { unpath } from './unpath';
+import type { UnPathProps } from './unpath';
 
 export const unpathPrefixREG = /^un.*/;
-export type TUnPath = keyof typeof unpath;
-export const isUnPathProp = (prop: TUnPath | string): prop is TUnPath => {
+export const isUnPathProp = (prop: UnPathProps | string): prop is UnPathProps => {
     return prop in unpath;
 }
