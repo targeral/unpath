@@ -1,7 +1,10 @@
 {
     "extends": "@modern-js/tsconfig/base",
     "compilerOptions": {
-        "lib": ["ESNext"]
+        "outDir": "./dist",
+        "lib": ["ESNext"],
+        "declaration": true,
+        "emitDeclarationOnly": true,
     },
     "include": ["src"]
 }

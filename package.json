@@ -4,10 +4,12 @@
   "description": "node path api for unix and window",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "prepublish": "pnpm build",
+    "prepublish": "pnpm build && pnpm tsc",
     "build": "node ./scripts/build.js",
-    "dev": "node ./scripts/watch.js ./dist/test.js"
+    "dev": "node ./scripts/watch.js ./dist/test.js",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
