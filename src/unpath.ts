@@ -1,5 +1,7 @@
 import assert from 'assert';
 import * as path from 'path';
+import { delimiter, extname, format, isAbsolute } from 'path';
+import { isSupportUnixPath, isSupportWin32Path } from './utils';
 
 export type Argu<F extends (input: any) => any> = F extends (
     input: infer A,
@@ -12,7 +14,7 @@ export type Argu<F extends (input: any) => any> = F extends (
  * 
  * @param pathString file path or dir path
  */
-export const getWin32OrPosixAPIByPath = (pathString: string) => {
+export const getWin32OrPosixPathAPI = (pathString: string) => {
     const win32Sep = path.win32.sep;
     const posixSep = path.posix.sep;
     const haveWin32Sep = pathString.includes(win32Sep);
@@ -34,22 +36,41 @@ export const getWin32OrPosixAPIByPath = (pathString: string) => {
  **/
 type BaseNameT = typeof path.basename;
 export const basename: BaseNameT = (p, ext) => {
-    const platformPath = getWin32OrPosixAPIByPath(p);
+    const platformPath = getWin32OrPosixPathAPI(p);
     return platformPath.basename(p, ext);
 };
 
 type DirNameT = typeof path.dirname;
 export const dirname: DirNameT = (p: string) => {
-    const platformPath = getWin32OrPosixAPIByPath(p);
+    const platformPath = getWin32OrPosixPathAPI(p);
     return platformPath.basename(p);
 }
 
-export const delimiter = path.delimiter;
+type JoinT = typeof path.join;
+export const join: JoinT = (...paths: string[]) => {
+    const supportUnix = isSupportUnixPath();
+    const supportWin32 = isSupportWin32Path();
+    console.info(supportUnix, supportWin32)
+    const formatPaths = paths.map((p) => {
+        if (supportUnix) {
+            return path.posix.join(p);
+        } else if (supportWin32) {
+            return path.win32.join(p);
+        }
+
+        return p;
+    });
+
+    return path.join(...formatPaths);
+}
+
+
 
 export const unpath =  {
     basename,
     dirname,
-    delimiter,
+    join,
+    delimiter, extname, format, isAbsolute
 };
 
 export type unPathT = typeof unpath;

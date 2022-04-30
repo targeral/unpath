@@ -9,3 +9,7 @@ console.info('path.basename', basename);
 console.info('unpath.basename', b2);
 console.info('path.unbasename', b3);
 
+// test path.join
+const joinRet = unpath.join('C:\\temp\\', 'b');
+console.info('joinRet', joinRet);
+
